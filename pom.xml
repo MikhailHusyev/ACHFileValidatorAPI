@@ -40,6 +40,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>com.afrunt</groupId>
+			<artifactId>jach</artifactId>
+			<version>0.3.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
