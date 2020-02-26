@@ -1,23 +1,43 @@
 package com.groupg.achfilevalidator.services.validation;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.Reader;
+
+import com.groupg.achfilevalidator.models.FileHeader;
+
+import org.beanio.BeanReader;
+import org.beanio.StreamFactory;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Set;
+import java.io.InputStreamReader;
 
-import com.afrunt.jach.ACH;
-import com.afrunt.jach.metadata.ACHBeanMetadata;
-import com.fasterxml.jackson.core.util.ByteArrayBuilder;
-
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.web.multipart.MultipartFile;
 
-public class Validate{
+public class Validate {
 
-    public String testValidation(InputStreamSource file){
-        
+    public String testValidation(InputStreamSource file) {
+        try {
+            
+            StreamFactory factory = StreamFactory.newInstance();
+            Reader reader;
+
+            reader = new InputStreamReader(file.getInputStream());
+            factory.load("src/main/resources/ach.xml");
+            BeanReader in = factory.createReader("ach", reader);            
+            
+            FileHeader header;
+            while((header = (FileHeader) in.read()) != null){
+                String referenceCode = header.getPriorityCode();
+                System.out.println(referenceCode);
+            }
+        } catch (IOException e) {
+            System.out.println("Reader");
+            e.printStackTrace();
+        }
+
+
         return "TEST";
     }
 }
