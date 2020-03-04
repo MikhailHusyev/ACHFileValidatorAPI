@@ -33,5 +33,6 @@
             <field name="originatingDFI" length="8" minOccurs="1"/>
             <field name="batchNumber" length="7" minOccurs="1"/>
         </record>
+
     </stream>
 </beanio>

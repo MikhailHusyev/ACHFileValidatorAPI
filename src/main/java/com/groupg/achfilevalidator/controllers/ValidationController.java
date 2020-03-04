@@ -4,6 +4,7 @@ import com.groupg.achfilevalidator.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.InputStreamSource;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,11 @@ public class ValidationController{
     @PostMapping
     public String validateFile(@RequestParam("file") InputStreamSource file){
         return String.valueOf(validationService.validate(file));
+    }
+    
+    @GetMapping
+    public String test() {
+    	return "Can reach api";
     }
 
 }
