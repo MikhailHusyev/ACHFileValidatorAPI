@@ -1,8 +1,8 @@
 package com.groupg.achfilevalidator.controllers;
 
 import com.groupg.achfilevalidator.services.ValidationService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ValidationController{
 
     @Autowired
+    @Qualifier("test")
     private ValidationService validationService;
 
     @PostMapping

@@ -42,4 +42,15 @@ public class Validate {
         	return errorResponse.getType();
         }
     }
+  
+import java.io.InputStream;
+import org.springframework.core.io.InputStreamSource;
+
+/**
+ * Validation Service
+ */
+public interface Validate{
+
+    String validate(InputStreamSource file);
+
 }
