@@ -20,23 +20,7 @@
             <field name="referenceCode" length="8" minOccurs="0"/>
         </record>
         
-        <record name="companyBatchHeader" class="com.group.achfilevalidator.models.CompanyBatchHeader" occurs="1">
-        	<field name="recordCode" length="1" minOccurs="1"/>
-        	<field name="serviceClassCode" length="3" minOccurs="1"/>
-        	<field name="companyName" length="16" minOccurs="1"/>
-        	<field name="companyData" length="20" minOccurs="0"/>
-        	<field name="companyID" length="10" minOccurs="1"/>
-        	<field name="SECCode" length="3" minOccurs="1"/>
-        	<field name="entryDescription" length="10" minOccurs="1"/>
-        	<field name="descriptiveDate" length="6" minOccurs="0"/>
-        	<field name="entryDate" length="6" minOccurs="1"/>
-        	<field name="settlementDate" length="3" minOccurs="1"/>
-        	<field name="statusCode" length="1" minOccurs="1"/>
-        	<field name="DFIID" length="8" minOccurs="1"/>
-        	<field name="batchNum" length="7" minOccurs="1"/>
-        </record>
-        
-        
+
     
     </stream>
 </beanio>
