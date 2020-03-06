@@ -1,7 +1,7 @@
 package com.groupg.achfilevalidator.models;
 
 public class CompanyBatchHeader {
-	public String recordCode;
+	public String companyRecordCode;
 	public String serviceClassCode;
 	public String companyName;
 	public String companyData;
@@ -15,11 +15,11 @@ public class CompanyBatchHeader {
 	public String DFIID;
 	public String batchNum;
 	
-	public String getRecordCode() {
-		return recordCode;
+	public String getCompanyRecordCode() {
+		return companyRecordCode;
 	}
-	public void setRecordCode(String recordCode) {
-		this.recordCode = recordCode;
+	public void setCompanyRecordCode(String companyRecordCode) {
+		this.companyRecordCode = companyRecordCode;
 	}
 	public String getServiceClassCode() {
 		return serviceClassCode;

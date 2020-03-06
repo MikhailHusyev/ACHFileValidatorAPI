@@ -1,7 +1,5 @@
 package com.groupg.achfilevalidator.models;
 
-import org.beanio.annotation.Record;
-
 public class FileHeader {
     private String recordCode;
     private String priorityCode;

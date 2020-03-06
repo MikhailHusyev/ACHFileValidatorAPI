@@ -23,10 +23,4 @@ public class ValidationController{
     public String validateFile(@RequestParam("file") InputStreamSource file){
         return String.valueOf(validationService.validate(file));
     }
-    
-    @GetMapping
-    public String test() {
-    	return "Can reach api";
-    }
-
 }

@@ -2,13 +2,11 @@ package com.groupg.achfilevalidator.services.validation;
 
 import java.io.Reader;
 
-import com.groupg.achfilevalidator.models.FileHeader;
+import com.groupg.achfilevalidator.models.ACHFile;
+import com.groupg.achfilevalidator.models.CompanyBatchHeader;
 
 import org.beanio.BeanReader;
 import org.beanio.StreamFactory;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.springframework.core.io.ClassPathResource;
@@ -31,13 +29,13 @@ public class ValidateTest implements Validate{
             factory.load("src/main/resources/ach.xml");
             BeanReader in = factory.createReader("ach", reader);            
             
-            FileHeader header = null;
-            while((header = (FileHeader) in.read()) != null){
-                String referenceCode = header.getPriorityCode();
+            ACHFile header = null;
+            while((header = (ACHFile) in.read()) != null){
+                String referenceCode = header.getCompanyBatchHeader().companyData;
                 System.out.println(referenceCode);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
 
 
