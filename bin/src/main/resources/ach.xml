@@ -1,0 +1,26 @@
+<beanio xmlns="http://www.beanio.org/2012/03"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+    
+    <stream name="ach" format="fixedlength" >
+        
+        <record name="fileHeader" class="com.groupg.achfilevalidator.models.FileHeader" occurs="1">
+            <field name="recordCode" length="1" minOccurs="1"/>
+            <field name="priorityCode" length="2" minOccurs="1"/>
+            <field name="immediateDestination" length="10" minOccurs="1"/>
+            <field name="immediateOrigin" length="10" minOccurs="1"/>
+            <field name="fileCreationDate" length="6" minOccurs="0"/>
+            <field name="fileCreationTime" length="4" minOccurs="1"/>
+            <field name="fileIdModifier" length="1" minOccurs="1"/>
+            <field name="recordSize" length="3" minOccurs="1"/>
+            <field name="blockingFactor" length="2" minOccurs="1"/>
+            <field name="formatCode" length="1" minOccurs="1"/>
+            <field name="immediateDestinationName" length="23" minOccurs="0"/>
+            <field name="immediateOriginName" length="23" minOccurs="0"/>
+            <field name="referenceCode" length="8" minOccurs="0"/>
+        </record>
+        
+
+    
+    </stream>
+</beanio>
