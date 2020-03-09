@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ValidateTest implements Validate{
     
     @Override
-    public String validate(InputStreamSource file) {
+    public ACHFile convertFile(InputStreamSource file) {
         try {
             
             StreamFactory factory = StreamFactory.newInstance();
@@ -29,16 +29,22 @@ public class ValidateTest implements Validate{
             factory.load("src/main/resources/ach.xml");
             BeanReader in = factory.createReader("ach", reader);            
             
-            ACHFile header = null;
-            while((header = (ACHFile) in.read()) != null){
-                String referenceCode = header.getCompanyBatchHeader().companyData;
+            ACHFile convertedFile = null;
+
+            while((convertedFile = (ACHFile) in.read()) != null){
+                String referenceCode = convertedFile.getCompanyBatchHeader().companyData;
                 System.out.println(referenceCode);
             }
+
+            return convertedFile;
         } catch (Exception e) {
             System.out.println(e);
         }
+        return null;
+    }
 
-
-        return "TEST";
+    @Override
+    public String validateFile(ACHFile fileModel) {
+        return null;
     }
 }

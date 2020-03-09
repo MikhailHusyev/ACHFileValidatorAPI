@@ -19,7 +19,7 @@ public class ValidationServiceImpl implements ValidationService{
 
     @Override
     public String validate(InputStreamSource file) {
-        return validationService.validate(file);
+        return validationService.convertFile(file).toString();
     }
 
 }
