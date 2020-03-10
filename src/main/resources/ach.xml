@@ -46,6 +46,26 @@
                 <field name="addendaBool" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="traceNum" length="15" minOccurs="1" maxOccurs="1"/>
             </record>
+            <record name="entryDetailAddenda" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" minOccurs = "0">
+                <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
+                <field name="addendaCode" length="2" minOccurs="1" maxOccurs="1"/>
+                <field name="paymentInfo" length="80" minOccurs="0" maxOccurs="1"/>
+                <field name="addendaSequenceNum" length="4" minOccurs="1" maxOccurs="1"/>
+                <field name="entrySequenceNum" length="7" minOccurs="1" maxOccurs="1"/> 
+            </record>
+            <record name="entryDetailAddenda" class="com.groupg.achfilevalidator.models.CompanyBatchControl" minOccurs = "1">
+                <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
+                <field name="serviceClassCode" length="3" minOccurs="1" maxOccurs="1"/>
+                <field name="entryCount" length="6" minOccurs="1" maxOccurs="1"/>
+                <field name="entryHash" length="10" minOccurs="1" maxOccurs="1"/>
+                <field name="totalDebitAmount" length="12" minOccurs="1" maxOccurs="1"/>
+                <field name="totalCreditAmount" length="12" minOccurs="1" maxOccurs="1"/>
+                <field name="companyID" length="10" minOccurs="1" maxOccurs="1"/>
+                <field name="authCode" length="19" minOccurs="0" maxOccurs="1"/>
+                <field name="bankUse" length="6" minOccurs="0" maxOccurs="1"/>
+                <field name="DFIID" length="8" minOccurs="1" maxOccurs="1"/>
+                <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>                
+            </record>
         </group>
 
     </stream>
