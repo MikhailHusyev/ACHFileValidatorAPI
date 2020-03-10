@@ -33,6 +33,19 @@
                 <field name="DFIID" length="8" minOccurs="1" maxOccurs="1"/>
                 <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>
             </record>
+            <record name="entryDetail" class="com.groupg.achfilevalidator.models.EntryDetail" minOccurs = "1">
+                <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
+                <field name="transactionCode" length="2" minOccurs="1" maxOccurs="1"/>
+                <field name="receivingRoutingNum" length="8" minOccurs="1" maxOccurs="1"/>
+                <field name="receivingRoutingCheckDigit" length="1" minOccurs="1" maxOccurs="1"/>
+                <field name="receivingAccountNum" length="17" minOccurs="1" maxOccurs="1"/>
+                <field name="transactionAmmount" length="10" minOccurs="1" maxOccurs="1"/>
+                <field name="receiverID" length="15" minOccurs="0" maxOccurs="1"/>
+                <field name="recieverName" length="22" minOccurs="1" maxOccurs="1"/>
+                <field name="discretionaryData" length="2" minOccurs="0" maxOccurs="1"/>
+                <field name="addendaBool" length="1" minOccurs="1" maxOccurs="1"/>
+                <field name="traceNum" length="15" minOccurs="1" maxOccurs="1"/>
+            </record>
         </group>
 
     </stream>
