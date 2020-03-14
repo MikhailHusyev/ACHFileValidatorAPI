@@ -1,6 +1,8 @@
 package com.groupg.achfilevalidator.models;
 
 import org.beanio.annotation.Segment;
+import java.util.Collection;
+import java.util.List;
 
 public class ACHFile {
     
@@ -8,6 +10,14 @@ public class ACHFile {
     private FileHeader fileHeader;
     @Segment(name = "companyBatchHeader")
     private CompanyBatchHeader companyBatchHeader;
+    @Segment(name = "companyBatchControl")
+    private CompanyBatchControl companyBatchControl;
+    @Segment(name = "fileControl")
+    private FileControl fileControl;
+    @Segment(name = "entryDetail")
+    private Collection<EntryDetail> entryDetail;
+    @Segment(name = "entryDetailAddenda")
+    private Collection<EntryDetailAddenda> entryDetailAddenda;
 
     public FileHeader getFileHeader() {
         return fileHeader;
@@ -23,5 +33,36 @@ public class ACHFile {
 
     public void setCompanyBatchHeader(CompanyBatchHeader companyBatchHeader) {
         this.companyBatchHeader = companyBatchHeader;
+    }
+    public Collection<EntryDetailAddenda> getEntryDetailAddenda() {
+        return entryDetailAddenda;
+    }
+
+    public void setEntryDetailAddenda(Collection<EntryDetailAddenda> entryDetailAddenda) {
+        this.entryDetailAddenda = entryDetailAddenda;
+    }
+
+    public Collection<EntryDetail> getEntryDetail() {
+        return entryDetail;
+    }
+
+    public void setEntryDetail(Collection<EntryDetail> entryDetail) {
+        this.entryDetail = entryDetail;
+    }
+
+    public FileControl getFileControl() {
+        return fileControl;
+    }
+
+    public void setFileControl(FileControl fileControl) {
+        this.fileControl = fileControl;
+    }
+
+    public CompanyBatchControl getCompanyBatchControl() {
+        return companyBatchControl;
+    }
+
+    public void setCompanyBatchControl(CompanyBatchControl companyBatchControl) {
+        this.companyBatchControl = companyBatchControl;
     }
 }

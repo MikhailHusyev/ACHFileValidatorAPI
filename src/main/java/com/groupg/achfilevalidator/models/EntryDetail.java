@@ -5,7 +5,7 @@ public class EntryDetail {
 	public String transactionCode;
 	public String receivingRoutingNum;
 	public String receivingRoutingCheckDigit;
-	public String reveivingAccountNum;
+	public String receivingAccountNum;
 	public String transactionAmount;
 	public String receiverID;
 	public String receiverName;
@@ -37,11 +37,11 @@ public class EntryDetail {
 	public void setReceivingRoutingCheckDigit(String receivingRoutingCheckDigit) {
 		this.receivingRoutingCheckDigit = receivingRoutingCheckDigit;
 	}
-	public String getReveivingAccountNum() {
-		return reveivingAccountNum;
+	public String getReceivingAccountNum() {
+		return receivingAccountNum;
 	}
-	public void setReveivingAccountNum(String reveivingAccountNum) {
-		this.reveivingAccountNum = reveivingAccountNum;
+	public void setReceivingAccountNum(String receivingAccountNum) {
+		this.receivingAccountNum = receivingAccountNum;
 	}
 	public String getTransactionAmount() {
 		return transactionAmount;

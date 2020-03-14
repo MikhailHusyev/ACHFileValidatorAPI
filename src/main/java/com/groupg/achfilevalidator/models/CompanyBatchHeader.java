@@ -1,25 +1,30 @@
 package com.groupg.achfilevalidator.models;
 
+import java.util.Collection;
+import org.beanio.annotation.Segment;
+
 public class CompanyBatchHeader {
-	public String companyRecordCode;
-	public String serviceClassCode;
-	public String companyName;
-	public String companyData;
-	public String companyID;
-	public String SECCode;
-	public String entryDescription;
-	public String descriptiveDate;
-	public String entryDate;
-	public String settlementDate;
-	public String statusCode;
-	public String DFIID;
-	public String batchNum;
-	
-	public String getCompanyRecordCode() {
-		return companyRecordCode;
+	private String recordCode;
+	private String serviceClassCode;
+	private String companyName;
+	private String companyData;
+	private String companyID;
+	private String SECCode;
+	private String entryDescription;
+	private String descriptiveDate;
+	private String entryDate;
+	private String settlementDate;
+	private String statusCode;
+	private String DFIID;
+	private String batchNum;
+
+
+	public String getrecordCode() {
+		return recordCode;
 	}
-	public void setCompanyRecordCode(String companyRecordCode) {
-		this.companyRecordCode = companyRecordCode;
+
+	public void setrecordCode(String recordCode) {
+		this.recordCode = recordCode;
 	}
 	public String getServiceClassCode() {
 		return serviceClassCode;
