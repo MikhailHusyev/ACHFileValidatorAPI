@@ -27,7 +27,7 @@ public class ValidateTest implements Validate{
     
     @Override
     public ErrorResponse convertFile(InputStreamSource file) {
-        ErrorResponse error = new ErrorResponse("unknown error", "0", "Testing error response");
+        ErrorResponse error = new ErrorResponse("unknown error", 0, 0, 0, "Testing error response");
     	try {
             
             StreamFactory factory = StreamFactory.newInstance();
@@ -40,12 +40,20 @@ public class ValidateTest implements Validate{
             ACHFile convertedFile = null;
 
             while((convertedFile = (ACHFile) in.read()) != null){
-                System.out.println(convertedFile.getFileHeader().getRecordCode());
-                System.out.println(convertedFile.getCompanyBatchHeader().getBatchNum().compareTo(convertedFile.getCompanyBatchControl().getBatchNum()));
-                //First test to see if we can validate straight from here, this condition should always be true thats why I tested it
-                if(convertedFile.getCompanyBatchHeader().getBatchNum().compareTo(convertedFile.getCompanyBatchControl().getBatchNum()) == 0)
-                	error.setType("no error");
-                
+                //Check that serviceClassCode is accurate
+                switch (convertedFile.getCompanyBatchHeader().getServiceClassCode()) {
+                case "200": {//Debit and Credit
+                	
+                }
+                case "220": {//Credit Only
+                	
+                }
+                case "225": {//Debit Only
+                	
+                }
+                default:
+                	error = new ErrorResponse("ServiceClassCode Error", 5, 2, 2, "The service code is not valid");
+                }
             }
 
             return error;
