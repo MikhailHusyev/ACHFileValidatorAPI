@@ -1,6 +1,8 @@
 package com.groupg.achfilevalidator.models;
 
 import org.beanio.annotation.Segment;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,9 +17,9 @@ public class ACHFile {
     @Segment(name = "fileControl")
     private FileControl fileControl;
     @Segment(name = "entryDetail")
-    private Collection<EntryDetail> entryDetail;
+    private ArrayList<EntryDetail> entryDetail;
     @Segment(name = "entryDetailAddenda")
-    private Collection<EntryDetailAddenda> entryDetailAddenda;
+    private ArrayList<EntryDetailAddenda> entryDetailAddenda;
 
     public FileHeader getFileHeader() {
         return fileHeader;
@@ -34,19 +36,19 @@ public class ACHFile {
     public void setCompanyBatchHeader(CompanyBatchHeader companyBatchHeader) {
         this.companyBatchHeader = companyBatchHeader;
     }
-    public Collection<EntryDetailAddenda> getEntryDetailAddenda() {
+    public ArrayList<EntryDetailAddenda> getEntryDetailAddenda() {
         return entryDetailAddenda;
     }
 
-    public void setEntryDetailAddenda(Collection<EntryDetailAddenda> entryDetailAddenda) {
+    public void setEntryDetailAddenda(ArrayList<EntryDetailAddenda> entryDetailAddenda) {
         this.entryDetailAddenda = entryDetailAddenda;
     }
 
-    public Collection<EntryDetail> getEntryDetail() {
+    public ArrayList<EntryDetail> getEntryDetail() {
         return entryDetail;
     }
 
-    public void setEntryDetail(Collection<EntryDetail> entryDetail) {
+    public void setEntryDetail(ArrayList<EntryDetail> entryDetail) {
         this.entryDetail = entryDetail;
     }
 
