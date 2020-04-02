@@ -10,16 +10,25 @@ public class ACHFile {
     
     @Segment(name = "fileHeader")
     private FileHeader fileHeader;
-    @Segment(name = "companyBatchHeader")
-    private CompanyBatchHeader companyBatchHeader;
-    @Segment(name = "companyBatchControl")
-    private CompanyBatchControl companyBatchControl;
+    //@Segment(name = "companyBatchHeader")
+   // private CompanyBatchHeader companyBatchHeader;
+    //@Segment(name = "companyBatchControl")
+    //private CompanyBatchControl companyBatchControl;
     @Segment(name = "fileControl")
     private FileControl fileControl;
-    @Segment(name = "entryDetail")
-    private ArrayList<EntryDetail> entryDetail;
-    @Segment(name = "entryDetailAddenda")
-    private ArrayList<EntryDetailAddenda> entryDetailAddenda;
+   // @Segment(name = "entryDetail")
+   // private ArrayList<EntryDetail> entryDetail;
+    //@Segment(name = "entryDetailAddenda")
+    //private EntryDetailAddenda entryDetailAddenda;
+    @Segment(name="batchDetail")
+    private ArrayList<BatchDetail> batchDetail;
+    
+    public ArrayList<BatchDetail> getBatchDetail(){
+    	return batchDetail;
+    }
+    public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {
+    	this.batchDetail = batchDetail;
+    }
 
     public FileHeader getFileHeader() {
         return fileHeader;
@@ -29,18 +38,18 @@ public class ACHFile {
         this.fileHeader = fileHeader;
     }
 
-    public CompanyBatchHeader getCompanyBatchHeader() {
+   /* public CompanyBatchHeader getCompanyBatchHeader() {
         return companyBatchHeader;
     }
 
     public void setCompanyBatchHeader(CompanyBatchHeader companyBatchHeader) {
         this.companyBatchHeader = companyBatchHeader;
     }
-    public ArrayList<EntryDetailAddenda> getEntryDetailAddenda() {
+    public EntryDetailAddenda getEntryDetailAddenda() {
         return entryDetailAddenda;
     }
 
-    public void setEntryDetailAddenda(ArrayList<EntryDetailAddenda> entryDetailAddenda) {
+    public void setEntryDetailAddenda(EntryDetailAddenda entryDetailAddenda) {
         this.entryDetailAddenda = entryDetailAddenda;
     }
 
@@ -51,7 +60,7 @@ public class ACHFile {
     public void setEntryDetail(ArrayList<EntryDetail> entryDetail) {
         this.entryDetail = entryDetail;
     }
-
+*/
     public FileControl getFileControl() {
         return fileControl;
     }
@@ -59,7 +68,7 @@ public class ACHFile {
     public void setFileControl(FileControl fileControl) {
         this.fileControl = fileControl;
     }
-
+/*
     public CompanyBatchControl getCompanyBatchControl() {
         return companyBatchControl;
     }
@@ -67,4 +76,5 @@ public class ACHFile {
     public void setCompanyBatchControl(CompanyBatchControl companyBatchControl) {
         this.companyBatchControl = companyBatchControl;
     }
+ */
 }

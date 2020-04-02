@@ -6,14 +6,14 @@ import com.groupg.achfilevalidator.models.ErrorResponse;
 public class ValidationTests {
 	public ErrorResponse validHash(ACHFile file) {
 		
-		int entryNum = file.getEntryDetail().size();
+		int entryNum = file.getBatchDetail().get(0).getEntryDetailList().size();
 		String fileHash = file.getFileControl().getEntryHash();
-		String batchHash = file.getCompanyBatchControl().getEntryHash();
+		String batchHash = file.getBatchDetail().get(0).getCompanyBatchControl().getEntryHash();
 		String realHash = "";
 		int hashCalc = 0;
 		
 		for(int i = 0; i < entryNum; i++) {
-			hashCalc += Integer.valueOf(file.getEntryDetail().get(i).getReceivingRoutingNum());
+			hashCalc += Integer.valueOf(file.getBatchDetail().get(0).getEntryDetailList().get(i).getEntryDetail().getReceivingRoutingNum());
 		}
 		
 		if(String.valueOf(hashCalc).length() < 10) {
