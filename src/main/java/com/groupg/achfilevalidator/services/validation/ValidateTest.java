@@ -36,7 +36,7 @@ public class ValidateTest implements Validate{
             while((convertedFile = (ACHFile) in.read()) != null){
             	ValidationTests test = new ValidationTests();
             	
-            	return test.validFileHash(convertedFile);
+            	error = test.validFileTotals(convertedFile);
             }
 
             return error;
