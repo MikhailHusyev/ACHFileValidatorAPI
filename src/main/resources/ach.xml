@@ -8,28 +8,28 @@
 	            <field name="priorityCode" literal="01" length="2" minOccurs="1" maxOccurs="1"/>
 	            <field name="immediateDestination" length="10" minOccurs="1" maxOccurs="1"/>
 	            <field name="immediateOrigin" length="10" minOccurs="1" maxOccurs="1"/>
-	            <field name="fileCreationDate" length="6" minOccurs="0" maxOccurs="1"/>
+	            <field name="fileCreationDate" length="6" minOccurs="1" maxOccurs="1"/>
 	            <field name="fileCreationTime" length="4" minOccurs="1" maxOccurs="1"/>
 	            <field name="fileIdModifier" length="1" minOccurs="1" maxOccurs="1"/>
 	            <field name="recordSize" literal="094" length="3" minOccurs="1" maxOccurs="1"/>
 	            <field name="blockingFactor" literal="10" length="2" minOccurs="1" maxOccurs="1"/>
 	            <field name="formatCode" literal="1" length="1" minOccurs="1" maxOccurs="1"/>
-	            <field name="immediateDestinationName" length="23" minOccurs="0" maxOccurs="1"/>
-	            <field name="immediateOriginName" length="23" minOccurs="0" maxOccurs="1"/>
-	            <field name="referenceCode" length="8" minOccurs="0" maxOccurs="1"/>
+	            <field name="immediateDestinationName" length="23" minOccurs="1" maxOccurs="1"/>
+	            <field name="immediateOriginName" length="23" minOccurs="1" maxOccurs="1"/>
+	            <field name="referenceCode" length="8" minOccurs="1" maxOccurs="1"/>
 	    	</record>
 	    	<group name="batchDetail" collection="list" class="com.groupg.achfilevalidator.models.BatchDetail" minOccurs="1" maxOccurs="unbounded">
 	    		<record name="companyBatchHeader" class="com.groupg.achfilevalidator.models.CompanyBatchHeader"  minOccurs="1" maxOccurs="1">
 	    			<field name="recordCode" rid="true" literal="5" length="1" minOccurs="1" maxOccurs="1"/>
 	                <field name="serviceClassCode" length="3" minOccurs="1" maxOccurs="1"/>
 	                <field name="companyName" length="16" minOccurs="1" maxOccurs="1"/>
-	                <field name="companyData" length="20" minOccurs="0" maxOccurs="1"/>
+	                <field name="companyData" length="20" minOccurs="1" maxOccurs="1"/>
 	                <field name="companyID" length="10" minOccurs="1" maxOccurs="1"/>
 	                <field name="SECCode" length="3" minOccurs="1" maxOccurs="1"/>
 	                <field name="entryDescription" length="10" minOccurs="1" maxOccurs="1"/>
-	                <field name="descriptiveDate" length="6" minOccurs="0" maxOccurs="1"/>
+	                <field name="descriptiveDate" length="6" minOccurs="1" maxOccurs="1"/>
 	                <field name="entryDate" length="6" minOccurs="1" maxOccurs="1"/>
-	                <field name="settlementDate" length="3" minOccurs="0" maxOccurs="1"/>
+	                <field name="settlementDate" length="3" minOccurs="1" maxOccurs="1"/>
 	                <field name="statusCode" literal="1" length="1" minOccurs="1" maxOccurs="1"/>
 	                <field name="DFIID" length="8" minOccurs="1" maxOccurs="1"/>
 	                <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>
@@ -42,16 +42,16 @@
 	                	<field name="receivingRoutingCheckDigit" length="1" minOccurs="1" maxOccurs="1"/>
 	                	<field name="receivingAccountNum" length="17" minOccurs="1" maxOccurs="1"/>
 	                	<field name="transactionAmount" length="10" minOccurs="1" maxOccurs="1"/>
-	                	<field name="receiverID" length="15" minOccurs="0" maxOccurs="1"/>
+	                	<field name="receiverID" length="15" minOccurs="1" maxOccurs="1"/>
 	                	<field name="receiverName" length="22" minOccurs="1" maxOccurs="1"/>
-	                	<field name="discretionaryData" length="2" minOccurs="0" maxOccurs="1"/>
+	                	<field name="discretionaryData" length="2" minOccurs="1" maxOccurs="1"/>
 	                	<field name="addendaBool" length="1" minOccurs="1" maxOccurs="1"/>
 	                	<field name="traceNum" length="15" minOccurs="1" maxOccurs="1"/>
 	            	</record>
 	    			<record name="entryDetailAddenda" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" minOccurs = "0" maxOccurs="1">
 	                	<field name="recordCode" rid="true" literal="7" length="1" minOccurs="1" maxOccurs="1"/>
 	                	<field name="addendaCode" literal="05" length="2" minOccurs="1" maxOccurs="1"/>
-	                	<field name="paymentInfo" length="80" minOccurs="0" maxOccurs="1"/>
+	                	<field name="paymentInfo" length="80" minOccurs="1" maxOccurs="1"/>
 	                	<field name="addendaSequenceNum" length="4" minOccurs="1" maxOccurs="1"/>
 	                	<field name="entrySequenceNum" length="7" minOccurs="1" maxOccurs="1"/> 
 	            	</record>
@@ -64,8 +64,8 @@
 	                <field name="totalDebitAmount" length="12" minOccurs="1" maxOccurs="1"/>
 	                <field name="totalCreditAmount" length="12" minOccurs="1" maxOccurs="1"/>
 	                <field name="companyID" length="10" minOccurs="1" maxOccurs="1"/>
-	                <field name="authCode" length="19" minOccurs="0" maxOccurs="1"/>
-	                <field name="bankUse" length="6" minOccurs="0" maxOccurs="1"/>
+	                <field name="authCode" length="19" minOccurs="1" maxOccurs="1"/>
+	                <field name="bankUse" length="6" minOccurs="1" maxOccurs="1"/>
 	                <field name="DFIID" length="8" minOccurs="1" maxOccurs="1"/>
 	                <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>                
 	            </record>

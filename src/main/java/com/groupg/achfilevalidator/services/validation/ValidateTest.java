@@ -38,7 +38,8 @@ public class ValidateTest implements Validate{
             	
             	error = test.validFileTotals(convertedFile);
             }
-
+            in.close();
+            
             return error;
         } catch (Exception e) {
             System.out.println(e);

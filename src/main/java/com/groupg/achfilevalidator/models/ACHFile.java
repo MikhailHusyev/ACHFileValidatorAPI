@@ -23,7 +23,7 @@ public class ACHFile {
     @Segment(name="batchDetail")
     private ArrayList<BatchDetail> batchDetail;
     
-    public ArrayList<BatchDetail> getBatchDetail(){
+	public ArrayList<BatchDetail> getBatchDetail(){
     	return batchDetail;
     }
     public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {
