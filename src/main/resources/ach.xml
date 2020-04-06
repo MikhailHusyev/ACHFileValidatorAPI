@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
     <stream name="ach" format="fixedlength">
         <group name="achFile" class="com.groupg.achfilevalidator.models.ACHFile" minOccurs="1" maxOccurs="1">
-            <record name="fileHeader" class="com.groupg.achfilevalidator.models.FileHeader" minOccurs="1" maxOccurs="1">
+            <record name="fileHeader"  class="com.groupg.achfilevalidator.models.FileHeader" minOccurs="1" maxOccurs="1">
                 <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="priorityCode" length="2" minOccurs="1" maxOccurs="1"/>
                 <field name="immediateDestination" length="10" minOccurs="1" maxOccurs="1"/>
@@ -18,7 +18,7 @@
                 <field name="immediateOriginName" length="23" minOccurs="0" maxOccurs="1"/>
                 <field name="referenceCode" length="8" minOccurs="0" maxOccurs="1"/>
             </record>
-            <record name="companyBatchHeader" class="com.groupg.achfilevalidator.models.CompanyBatchHeader" minOccurs="1" maxOccurs="1">
+            <record name="companyBatchHeader"  class="com.groupg.achfilevalidator.models.CompanyBatchHeader" minOccurs="1" maxOccurs="1">
                 <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="serviceClassCode" length="3" minOccurs="1" maxOccurs="1"/>
                 <field name="companyName" length="16" minOccurs="1" maxOccurs="1"/>
@@ -33,7 +33,7 @@
                 <field name="DFIID" length="8" minOccurs="1" maxOccurs="1"/>
                 <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>
             </record>
-            <record name="entryDetail" collection="list" class="com.groupg.achfilevalidator.models.EntryDetail" minOccurs = "1">
+            <record name="entryDetail" class="com.groupg.achfilevalidator.models.EntryDetail" collection="list"  minOccurs="1" maxOccurs="unbounded">
                 <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="transactionCode" length="2" minOccurs="1" maxOccurs="1"/>
                 <field name="receivingRoutingNum" length="8" minOccurs="1" maxOccurs="1"/>
@@ -44,9 +44,9 @@
                 <field name="receiverName" length="22" minOccurs="1" maxOccurs="1"/>
                 <field name="discretionaryData" length="2" minOccurs="0" maxOccurs="1"/>
                 <field name="addendaBool" length="1" minOccurs="1" maxOccurs="1"/>
-                <field name="traceNum" length="15" minOccurs="1" maxOccurs="1"/>
+                <field name="traceNum" length="14" minOccurs="1" maxOccurs="1"/>
             </record>
-            <record name="entryDetailAddenda" collection="list" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" minOccurs = "0">
+            <!--<record name="entryDetailAddenda" collection="list" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" order="4" occursRef="entryDetail">
                 <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="addendaCode" length="2" minOccurs="1" maxOccurs="1"/>
                 <field name="paymentInfo" length="80" minOccurs="0" maxOccurs="1"/>
@@ -75,8 +75,9 @@
                 <field name="totalDebitAmount" length="12" minOccurs="1" maxOccurs="1"/>                
                 <field name="totalCreditAmount" length="12" minOccurs="1" maxOccurs="1"/>                
                 <field name="bankUse" length="39" minOccurs="1" maxOccurs="1"/>                
-            </record>
+            </record>-->
+
         </group>
 
     </stream>
-</beanio>
+</beanio> 

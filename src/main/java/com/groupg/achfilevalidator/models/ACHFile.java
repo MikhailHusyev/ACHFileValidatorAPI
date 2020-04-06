@@ -3,22 +3,18 @@ package com.groupg.achfilevalidator.models;
 import java.util.Collection;
 import java.util.List;
 
+import org.beanio.annotation.Group;
+import org.beanio.annotation.Record;
 import org.beanio.annotation.Segment;
 
 public class ACHFile {
 
-    @Segment(name = "fileHeader")
     private FileHeader fileHeader;
-    @Segment(name = "companyBatchHeader")
     private CompanyBatchHeader companyBatchHeader;
-    @Segment(name = "companyBatchControl")
-    private CompanyBatchControl companyBatchControl;
-    @Segment(name = "fileControl")
-    private FileControl fileControl;
-    @Segment(name = "entryDetail")
     private Collection<EntryDetail> entryDetail;
-    @Segment(name = "entryDetailAddenda")
     private Collection<EntryDetailAddenda> entryDetailAddenda;
+    private CompanyBatchControl companyBatchControl;
+    private FileControl fileControl;
 
     public FileHeader getFileHeader() {
         return fileHeader;
