@@ -46,7 +46,7 @@
                 <field name="addendaBool" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="traceNum" length="14" minOccurs="1" maxOccurs="1"/>
             </record>
-            <!--<record name="entryDetailAddenda" collection="list" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" order="4" occursRef="entryDetail">
+            <record name="entryDetailAddenda" collection="list" class="com.groupg.achfilevalidator.models.EntryDetailAddenda" order="4" occursRef="entryDetail">
                 <field name="recordCode" length="1" minOccurs="1" maxOccurs="1"/>
                 <field name="addendaCode" length="2" minOccurs="1" maxOccurs="1"/>
                 <field name="paymentInfo" length="80" minOccurs="0" maxOccurs="1"/>
@@ -75,7 +75,7 @@
                 <field name="totalDebitAmount" length="12" minOccurs="1" maxOccurs="1"/>                
                 <field name="totalCreditAmount" length="12" minOccurs="1" maxOccurs="1"/>                
                 <field name="bankUse" length="39" minOccurs="1" maxOccurs="1"/>                
-            </record>-->
+            </record>
 
         </group>
 
