@@ -7,33 +7,31 @@ import org.beanio.annotation.Group;
 import org.beanio.annotation.Record;
 import org.beanio.annotation.Segment;
 
-public class ACHFile {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+public class ACHFile {
+    @Segment(name="fileHeader")
     private FileHeader fileHeader;
-    private CompanyBatchHeader companyBatchHeader;
-    private Collection<EntryDetail> entryDetail;
-    private Collection<EntryDetailAddenda> entryDetailAddenda;
-    private CompanyBatchControl companyBatchControl;
+    @Segment(name = "fileControl")
     private FileControl fileControl;
+    @Segment(name="batchDetail")
+    private ArrayList<BatchDetail> batchDetail;
+    
+	  public ArrayList<BatchDetail> getBatchDetail(){
+    	return batchDetail;
+    }
+    public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {
+    	this.batchDetail = batchDetail;
+    }
 
     public FileHeader getFileHeader() {
         return fileHeader;
     }
 
-    public Collection<EntryDetailAddenda> getEntryDetailAddenda() {
-        return entryDetailAddenda;
-    }
-
-    public void setEntryDetailAddenda(Collection<EntryDetailAddenda> entryDetailAddenda) {
-        this.entryDetailAddenda = entryDetailAddenda;
-    }
-
-    public Collection<EntryDetail> getEntryDetail() {
-        return entryDetail;
-    }
-
-    public void setEntryDetail(Collection<EntryDetail> entryDetail) {
-        this.entryDetail = entryDetail;
+    public void setFileHeader(FileHeader fileHeader) {
+        this.fileHeader = fileHeader;
     }
 
     public FileControl getFileControl() {
@@ -44,23 +42,4 @@ public class ACHFile {
         this.fileControl = fileControl;
     }
 
-    public CompanyBatchControl getCompanyBatchControl() {
-        return companyBatchControl;
-    }
-
-    public void setCompanyBatchControl(CompanyBatchControl companyBatchControl) {
-        this.companyBatchControl = companyBatchControl;
-    }
-
-    public void setFileHeader(FileHeader fileHeader) {
-        this.fileHeader = fileHeader;
-    }
-
-    public CompanyBatchHeader getCompanyBatchHeader() {
-        return companyBatchHeader;
-    }
-
-    public void setCompanyBatchHeader(CompanyBatchHeader companyBatchHeader) {
-        this.companyBatchHeader = companyBatchHeader;
-    }
 }

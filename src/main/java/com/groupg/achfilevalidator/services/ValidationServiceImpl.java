@@ -1,5 +1,6 @@
 package com.groupg.achfilevalidator.services;
 
+import com.groupg.achfilevalidator.models.ErrorResponse;
 import com.groupg.achfilevalidator.services.validation.Validate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class ValidationServiceImpl implements ValidationService{
     Validate validationService;
 
     @Override
-    public String validate(InputStreamSource file) {
-        return validationService.convertFile(file).toString();
+    public ErrorResponse validate(InputStreamSource file) {
+        return validationService.convertFile(file);
     }
 
 }
