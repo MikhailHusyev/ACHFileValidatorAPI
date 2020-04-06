@@ -1,17 +1,17 @@
 package com.groupg.achfilevalidator.models;
 
 public class EntryDetail {
-	public String recordCode;
-	public String transactionCode;
-	public String receivingRoutingNum;
-	public String receivingRoutingCheckDigit;
-	public String reveivingAccountNum;
-	public String transactionAmount;
-	public String receiverID;
-	public String receiverName;
-	public String discretionaryData;
-	public String addendaBool;
-	public String traceNum;
+	private String recordCode;
+	private String transactionCode;
+	private String receivingRoutingNum;
+	private String receivingRoutingCheckDigit;
+	private String receivingAccountNum;
+	private String transactionAmount;
+	private String receiverID;
+	private String receiverName;
+	private String discretionaryData;
+	private String addendaBool;
+	private String traceNum;
 	
 	public String getRecordCode() {
 		return recordCode;
@@ -37,11 +37,11 @@ public class EntryDetail {
 	public void setReceivingRoutingCheckDigit(String receivingRoutingCheckDigit) {
 		this.receivingRoutingCheckDigit = receivingRoutingCheckDigit;
 	}
-	public String getReveivingAccountNum() {
-		return reveivingAccountNum;
+	public String getreceivingAccountNum() {
+		return receivingAccountNum;
 	}
-	public void setReveivingAccountNum(String reveivingAccountNum) {
-		this.reveivingAccountNum = reveivingAccountNum;
+	public void setreceivingAccountNum(String receivingAccountNum) {
+		this.receivingAccountNum = receivingAccountNum;
 	}
 	public String getTransactionAmount() {
 		return transactionAmount;

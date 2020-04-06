@@ -32,7 +32,7 @@ public class ValidateTest implements Validate{
             ACHFile convertedFile = null;
 
             while((convertedFile = (ACHFile) in.read()) != null){
-                String referenceCode = convertedFile.getCompanyBatchHeader().companyData;
+                String referenceCode = convertedFile.getCompanyBatchHeader().getBatchNum();
                 System.out.println(referenceCode);
             }
 
