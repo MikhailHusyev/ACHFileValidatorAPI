@@ -1,6 +1,7 @@
 package com.groupg.achfilevalidator.models;
 
 public class EntryDetail {
+
 	public String recordCode;
 	public String transactionCode;
 	public String receivingRoutingNum;

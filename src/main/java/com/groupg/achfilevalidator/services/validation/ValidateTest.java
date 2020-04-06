@@ -34,9 +34,11 @@ public class ValidateTest implements Validate{
             ACHFile convertedFile = null;
 
             while((convertedFile = (ACHFile) in.read()) != null){
+
             	ValidationTests test = new ValidationTests();
-            	
+            	//This is a test of the dollar amount error
             	error = test.validFileTotals(convertedFile);
+
             }
             in.close();
             

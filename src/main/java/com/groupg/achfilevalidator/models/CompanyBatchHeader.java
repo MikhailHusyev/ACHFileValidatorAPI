@@ -1,5 +1,9 @@
 package com.groupg.achfilevalidator.models;
 
+import java.util.Collection;
+
+import org.beanio.annotation.Segment;
+
 public class CompanyBatchHeader {
 	private String recordCode;
 	private String serviceClassCode;

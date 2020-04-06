@@ -1,5 +1,10 @@
 package com.groupg.achfilevalidator.models;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.beanio.annotation.Group;
+import org.beanio.annotation.Record;
 import org.beanio.annotation.Segment;
 
 import java.util.ArrayList;
@@ -7,23 +12,14 @@ import java.util.Collection;
 import java.util.List;
 
 public class ACHFile {
-    
-    @Segment(name = "fileHeader")
+    @Segment(name="fileHeader")
     private FileHeader fileHeader;
-    //@Segment(name = "companyBatchHeader")
-   // private CompanyBatchHeader companyBatchHeader;
-    //@Segment(name = "companyBatchControl")
-    //private CompanyBatchControl companyBatchControl;
     @Segment(name = "fileControl")
     private FileControl fileControl;
-   // @Segment(name = "entryDetail")
-   // private ArrayList<EntryDetail> entryDetail;
-    //@Segment(name = "entryDetailAddenda")
-    //private EntryDetailAddenda entryDetailAddenda;
     @Segment(name="batchDetail")
     private ArrayList<BatchDetail> batchDetail;
     
-	public ArrayList<BatchDetail> getBatchDetail(){
+	  public ArrayList<BatchDetail> getBatchDetail(){
     	return batchDetail;
     }
     public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {
@@ -33,34 +29,11 @@ public class ACHFile {
     public FileHeader getFileHeader() {
         return fileHeader;
     }
-    
+
     public void setFileHeader(FileHeader fileHeader) {
         this.fileHeader = fileHeader;
     }
 
-   /* public CompanyBatchHeader getCompanyBatchHeader() {
-        return companyBatchHeader;
-    }
-
-    public void setCompanyBatchHeader(CompanyBatchHeader companyBatchHeader) {
-        this.companyBatchHeader = companyBatchHeader;
-    }
-    public EntryDetailAddenda getEntryDetailAddenda() {
-        return entryDetailAddenda;
-    }
-
-    public void setEntryDetailAddenda(EntryDetailAddenda entryDetailAddenda) {
-        this.entryDetailAddenda = entryDetailAddenda;
-    }
-
-    public ArrayList<EntryDetail> getEntryDetail() {
-        return entryDetail;
-    }
-
-    public void setEntryDetail(ArrayList<EntryDetail> entryDetail) {
-        this.entryDetail = entryDetail;
-    }
-*/
     public FileControl getFileControl() {
         return fileControl;
     }
@@ -68,13 +41,5 @@ public class ACHFile {
     public void setFileControl(FileControl fileControl) {
         this.fileControl = fileControl;
     }
-/*
-    public CompanyBatchControl getCompanyBatchControl() {
-        return companyBatchControl;
-    }
 
-    public void setCompanyBatchControl(CompanyBatchControl companyBatchControl) {
-        this.companyBatchControl = companyBatchControl;
-    }
- */
 }
