@@ -1,7 +1,7 @@
 package com.groupg.achfilevalidator.services;
 
-import com.groupg.achfilevalidator.models.ErrorResponse;
-import com.groupg.achfilevalidator.services.validation.Validate;
+import com.groupg.achfilevalidator.models.ValidationResponse;
+import com.groupg.achfilevalidator.services.validation.ACHValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,16 +11,17 @@ import org.springframework.stereotype.Service;
 /**
  * CURRENT DEPENDENCY INJECTION NAME IS DEFAULT
  */
-@Service("test")
+@Service("validationService")
 public class ValidationServiceImpl implements ValidationService{
 
     @Autowired
-    @Qualifier("testValidate")
-    Validate validationService;
+    @Qualifier("standardValidation")
+    ACHValidator standardValidator;
 
     @Override
-    public ErrorResponse validate(InputStreamSource file) {
-        return validationService.convertFile(file);
+    public ValidationResponse validate(InputStreamSource file) {
+        standardValidator.validateFile(file);
+        return null;
     }
 
 }
