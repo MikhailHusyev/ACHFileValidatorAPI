@@ -54,6 +54,7 @@ public class StandardACHValidator implements ACHValidator {
         while((convertedFile = (ACHFile) in.read()) != null){
 
         }
+        in.close();
 
         return convertedFile;
 
