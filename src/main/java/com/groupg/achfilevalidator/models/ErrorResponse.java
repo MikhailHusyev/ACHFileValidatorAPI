@@ -8,6 +8,7 @@ public class ErrorResponse extends Object{
 	public String description;
 	
 	//Constant Error Types
+	public static ErrorResponse ADDENDA_ERROR = new ErrorResponse("AddendaError", 00, 00, 00, "An addenda either does not exists when it should or does exist when it should not check entryDetail boolean");
 	public static ErrorResponse HASH_CODE_ERROR = new ErrorResponse("HashCodeError", 00, 00, 00, "The Hash Code is incorrect");
 	public static ErrorResponse DOLLAR_AMOUNT_ERROR = new ErrorResponse("DollarAmountError", 00, 00, 00, "The dollar amount does not match the totals");
 	public static ErrorResponse SERVICE_TRANSACTION_ERROR = new ErrorResponse("ServiceTransactionError", 00, 00, 00, "The Service Code does not match the Transaction Codes");
