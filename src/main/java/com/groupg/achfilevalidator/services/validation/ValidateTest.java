@@ -29,16 +29,15 @@ public class ValidateTest implements Validate{
 
             reader = new InputStreamReader(file.getInputStream());
             factory.load("src/main/resources/ach.xml");
-            BeanReader in = factory.createReader("ach", reader);            
+            BeanReader in = factory.createReader("ach", reader);
             
             ACHFile convertedFile = null;
 
             while((convertedFile = (ACHFile) in.read()) != null){
-
+            	
             	ValidationTests test = new ValidationTests();
             	//This is a test of the dollar amount error
             	error = test.validFileTotals(convertedFile);
-
             }
             in.close();
             

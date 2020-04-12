@@ -1,15 +1,7 @@
 package com.groupg.achfilevalidator.models;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.beanio.annotation.Group;
-import org.beanio.annotation.Record;
 import org.beanio.annotation.Segment;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class ACHFile {
     @Segment(name="fileHeader")
@@ -18,8 +10,18 @@ public class ACHFile {
     private FileControl fileControl;
     @Segment(name="batchDetail")
     private ArrayList<BatchDetail> batchDetail;
+    @Segment(name="blocking")
+    private ArrayList<Blocking> blocking;
     
-	  public ArrayList<BatchDetail> getBatchDetail(){
+    public ArrayList<Blocking> getBlocking(){
+    	return blocking;
+    }
+    
+    public void setBlocking(ArrayList<Blocking> blocking) {
+    	this.blocking = blocking;
+    }
+    
+	public ArrayList<BatchDetail> getBatchDetail(){
     	return batchDetail;
     }
     public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {
