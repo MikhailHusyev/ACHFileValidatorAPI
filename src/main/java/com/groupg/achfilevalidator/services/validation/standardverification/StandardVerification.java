@@ -1,12 +1,12 @@
-package com.groupg.achfilevalidator.services.validation.standardvalidation;
+package com.groupg.achfilevalidator.services.validation.standardverification;
 
 import com.groupg.achfilevalidator.models.ACHFile;
 import com.groupg.achfilevalidator.models.ValidationResponse;
 
 import org.springframework.stereotype.Component;
 
-@Component("standardValidator")
-public class StandardValidator implements Validator{
+@Component("standardVerification")
+public class StandardVerification implements VerificationService{
 
 	//TODO fix to add up batch hashes similar to validFileTotals
 	public ValidationResponse validFileHash(ACHFile file) {

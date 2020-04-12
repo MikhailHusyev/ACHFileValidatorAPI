@@ -4,7 +4,7 @@
     <stream name="ach" format="fixedlength">
     	<group name="achFile" class="com.groupg.achfilevalidator.models.ACHFile" minOccurs="1" maxOccurs="1">
 	    	<record name="fileHeader" class="com.groupg.achfilevalidator.models.FileHeader" minOccurs="1" maxOccurs="1">
-	    		<field name="recordCode" rid="true" literal="1" length="1" minOccurs="1" maxOccurs="1"/>
+	    		<field name="recordCode"  rid="true" literal="1" length="1" minOccurs="1" maxOccurs="1"/>
 	            <field name="priorityCode" literal="01" length="2" minOccurs="1" maxOccurs="1"/>
 	            <field name="immediateDestination" length="10" minOccurs="1" maxOccurs="1"/>
 	            <field name="immediateOrigin" length="10" minOccurs="1" maxOccurs="1"/>
@@ -70,7 +70,7 @@
 	                <field name="batchNum" length="7" minOccurs="1" maxOccurs="1"/>                
 	            </record>
 	    	</group>
-	    	<record name="fileControl" class="com.groupg.achfilevalidator.models.FileControl" minOccurs="1" maxOccurs="1">
+	    	<record name="trailer" class="com.groupg.achfilevalidator.models.FileControl" minOccurs="1" maxOccurs="1">
 	    		<field name="recordCode" rid="true" literal="9" length="1" minOccurs="1" maxOccurs="1"/>                
 	            <field name="batchCount" length="6" minOccurs="1" maxOccurs="1"/>                
 	            <field name="blockCount" length="6" minOccurs="1" maxOccurs="1"/>                

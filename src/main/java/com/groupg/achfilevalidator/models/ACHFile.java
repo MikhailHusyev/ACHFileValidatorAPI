@@ -12,14 +12,12 @@ import java.util.Collection;
 import java.util.List;
 
 public class ACHFile {
-    @Segment(name="fileHeader")
+    @Group("fileHeader")
     private FileHeader fileHeader;
-    @Segment(name = "fileControl")
-    private FileControl fileControl;
-    @Segment(name="batchDetail")
     private ArrayList<BatchDetail> batchDetail;
+    private FileControl fileControl;
     
-	  public ArrayList<BatchDetail> getBatchDetail(){
+	public ArrayList<BatchDetail> getBatchDetail(){
     	return batchDetail;
     }
     public void setBatchDetail(ArrayList<BatchDetail> batchDetail) {

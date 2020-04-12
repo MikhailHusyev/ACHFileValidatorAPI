@@ -4,7 +4,7 @@ import java.io.Reader;
 
 import com.groupg.achfilevalidator.models.ACHFile;
 import com.groupg.achfilevalidator.models.ValidationResponse;
-import com.groupg.achfilevalidator.services.validation.standardvalidation.Validator;
+import com.groupg.achfilevalidator.services.validation.standardverification.VerificationService;
 
 import org.beanio.BeanReader;
 import org.beanio.StreamFactory;
@@ -23,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class StandardACHValidator implements ACHValidator {
     
     @Autowired
-    @Qualifier("standardValidator")
-    Validator validator;
+    @Qualifier("standardVerification")
+    VerificationService validator;
 
     @Override
     public ValidationResponse validateFile(InputStreamSource file) {
@@ -52,10 +52,9 @@ public class StandardACHValidator implements ACHValidator {
         ACHFile convertedFile = null;
 
         while((convertedFile = (ACHFile) in.read()) != null){
-
+            
         }
         in.close();
-
         return convertedFile;
 
     }

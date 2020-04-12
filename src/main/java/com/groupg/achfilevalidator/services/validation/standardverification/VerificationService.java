@@ -1,9 +1,9 @@
-package com.groupg.achfilevalidator.services.validation.standardvalidation;
+package com.groupg.achfilevalidator.services.validation.standardverification;
 
 import com.groupg.achfilevalidator.models.ACHFile;
 import com.groupg.achfilevalidator.models.ValidationResponse;
 
-public interface Validator {
+public interface VerificationService {
     ValidationResponse validFileHash(ACHFile file);
     ValidationResponse validBatchHash(ACHFile file);
     ValidationResponse validServiceClass(ACHFile file, int batchNum);
