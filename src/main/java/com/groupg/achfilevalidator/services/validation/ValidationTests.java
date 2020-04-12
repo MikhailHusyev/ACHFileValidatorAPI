@@ -1,48 +1,47 @@
 package com.groupg.achfilevalidator.services.validation;
 
+import java.util.ArrayList;
+
 import com.groupg.achfilevalidator.models.ACHFile;
 import com.groupg.achfilevalidator.models.ErrorResponse;
 
 public class ValidationTests {
-	//TODO fix to add up batch hashes similar to validFileTotals
+	//Checks that file has correct hash based on batch hashes
 	public ErrorResponse validFileHash(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
 		int calcHash = 0;
 		String realHash = "";
 		String fileHash = file.getFileControl().getEntryHash();
 		
-		if(validBatchHash(file).equals(ErrorResponse.CLEAN_FILE_NO_ERROR)) {
-			for(int i = 0; i < numBatches; i++) {
-				calcHash += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getEntryHash());
-			}
-			
-			if(String.valueOf(calcHash).length() < 10) {
-				int zeros = 10 - String.valueOf(calcHash).length();
-				
-				while (zeros > 0) {
-					realHash += "0";
-					zeros--;
-				}
-				realHash += "" + calcHash;
-				
-			} else if (String.valueOf(calcHash).length() > 10) {
-				int start = String.valueOf(calcHash).length() - 10;
-				
-				for (int i = start; i < 11; i++)
-					realHash += String.valueOf(calcHash).charAt(i);
-			}
-			
-			if(fileHash.compareTo(realHash) != 0)
-				return ErrorResponse.HASH_CODE_ERROR;
-			
-			return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		for(int i = 0; i < numBatches; i++) {
+			calcHash += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getEntryHash());
 		}
-		return ErrorResponse.HASH_CODE_ERROR;
+		
+		if(String.valueOf(calcHash).length() < 10) {
+			int zeros = 10 - String.valueOf(calcHash).length();
+			
+			while (zeros > 0) {
+				realHash += "0";
+				zeros--;
+			}
+			realHash += "" + calcHash;
+			
+		} else if (String.valueOf(calcHash).length() > 10) {
+			int start = String.valueOf(calcHash).length() - 10;
+			
+			for (int i = start; i < 11; i++)
+				realHash += String.valueOf(calcHash).charAt(i);
+		}
+		
+		if(fileHash.compareTo(realHash) != 0)
+			return ErrorResponse.HASH_CODE_ERROR;
+		return null;
 	}
 	
 	//Checks that the specified batch has the correct hash
-	public ErrorResponse validBatchHash(ACHFile file) {
+	public ArrayList<ErrorResponse> validBatchHash(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
 		
 		for(int j = 0; j < numBatches; j++) {
 			int numEntries = file.getBatchDetail().get(j).getEntryDetailList().size();
@@ -72,109 +71,98 @@ public class ValidationTests {
 			}
 			
 			if(batchHash.compareTo(realHash) != 0)
-				return ErrorResponse.HASH_CODE_ERROR;
+				errors.add(ErrorResponse.HASH_CODE_ERROR);
 		}
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return errors;
 	}
 	
 	//Checks the Service Class Code against Entry Transaction codes per batch
-	public ErrorResponse validServiceClass(ACHFile file, int batchNum) {
-		String serviceCode = file.getBatchDetail().get(batchNum).getCompanyBatchHeader().getServiceClassCode();
-		int entryCount = Integer.valueOf(file.getBatchDetail().get(batchNum).getEntryDetailList().size());
-		ErrorResponse error = ErrorResponse.CLEAN_FILE_NO_ERROR;
-		String controlServiceCode = file.getBatchDetail().get(batchNum).getCompanyBatchControl().getServiceClassCode();
-		
-		if(serviceCode.compareTo(controlServiceCode) != 0)
-			return ErrorResponse.SERVICE_TRANSACTION_ERROR;
-		
-		switch (serviceCode) {
-			case ("200"): {
-				for(int i = 0; i < entryCount; i++) {
-					String transactionCode = file.getBatchDetail().get(batchNum).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
+	public ArrayList<ErrorResponse> validServiceClass(ACHFile file) {
+		int numBatches = file.getBatchDetail().size();
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
+		for(int j = 0; j < numBatches; j++) {
+			String serviceCode = file.getBatchDetail().get(j).getCompanyBatchHeader().getServiceClassCode();
+			int entryCount = Integer.valueOf(file.getBatchDetail().get(j).getEntryDetailList().size());
+			String controlServiceCode = file.getBatchDetail().get(j).getCompanyBatchControl().getServiceClassCode();
+			
+			if(serviceCode.compareTo(controlServiceCode) != 0)
+				errors.add(ErrorResponse.SERVICE_TRANSACTION_ERROR);
+			
+			switch (serviceCode) {
+				case ("200"): {
+					for(int i = 0; i < entryCount; i++) {
+						String transactionCode = file.getBatchDetail().get(j).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
 
-					switch(transactionCode) {
-						case("22"):
-							break;
-						case("23"):
-							break;
-						case("27"):
-							break;
-						case("28"):
-							break;
-						case("32"):
-							break;
-						case("33"):
-							break;
-						case("37"):
-							break;
-						case("38"):
-							break;
-						default:
-							return ErrorResponse.SERVICE_TRANSACTION_ERROR;
+						switch(transactionCode) {
+							case("22"):
+								break;
+							case("23"):
+								break;
+							case("27"):
+								break;
+							case("28"):
+								break;
+							case("32"):
+								break;
+							case("33"):
+								break;
+							case("37"):
+								break;
+							case("38"):
+								break;
+							default:
+								errors.add(ErrorResponse.SERVICE_TRANSACTION_ERROR);
+						}
 					}
 				}
-				return error;
-			}
-			case ("220"): {
-				for(int i = 0; i < entryCount; i++) {
-					String transactionCode = file.getBatchDetail().get(batchNum).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
+				case ("220"): {
+					for(int i = 0; i < entryCount; i++) {
+						String transactionCode = file.getBatchDetail().get(j).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
 
-					switch(transactionCode) {
-						case("22"):
-							break;
-						case("23"):
-							break;
-						case("32"):
-							break;
-						case("33"):
-							break;
-						default:
-							return ErrorResponse.SERVICE_TRANSACTION_ERROR;
+						switch(transactionCode) {
+							case("22"):
+								break;
+							case("23"):
+								break;
+							case("32"):
+								break;
+							case("33"):
+								break;
+							default:
+								errors.add(ErrorResponse.SERVICE_TRANSACTION_ERROR);
+						}
 					}
 				}
-				return error;
-			}
-			case ("225"): {
-				for(int i = 0; i < entryCount; i++) {
-					String transactionCode = file.getBatchDetail().get(batchNum).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
+				case ("225"): {
+					for(int i = 0; i < entryCount; i++) {
+						String transactionCode = file.getBatchDetail().get(j).getEntryDetailList().get(i).getEntryDetail().getTransactionCode();
 
-					switch(transactionCode) {
-						case("27"):
-							break;
-						case("28"):
-							break;
-						case("37"):
-							break;
-						case("38"):
-							break;
-						default:
-							return ErrorResponse.SERVICE_TRANSACTION_ERROR;
+						switch(transactionCode) {
+							case("27"):
+								break;
+							case("28"):
+								break;
+							case("37"):
+								break;
+							case("38"):
+								break;
+							default:
+								errors.add(ErrorResponse.SERVICE_TRANSACTION_ERROR);
+						}
 					}
 				}
-				return error;
-			}
-			default: {
-				return ErrorResponse.SERVICE_TRANSACTION_ERROR;
+				default: {
+					errors.add(ErrorResponse.SERVICE_TRANSACTION_ERROR);
+				}
 			}
 		}
-	}
-	
-	//Loops through batches
-	public ErrorResponse serviceClassHelper(ACHFile file) {
-		int batches = file.getBatchDetail().size();
-		ErrorResponse error = new ErrorResponse();
-		
-		for(int i = 0; i < batches; i++) {
-			error = this.validServiceClass(file, i);
-			if(error.equals(ErrorResponse.SERVICE_TRANSACTION_ERROR))
-				break;	
-		}
-		return error;
+		return errors;
 	}
 	
 	//Checks that debit and credit totals are correct per batch
-	public ErrorResponse validBatchTotals(ACHFile file) {
+	public ArrayList<ErrorResponse> validBatchTotals(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
 		
 		for(int j = 0; j < numBatches; j++) {
 			int entryNum = file.getBatchDetail().get(j).getEntryDetailList().size();
@@ -206,11 +194,11 @@ public class ValidationTests {
 			}
 			
 			if (credit != Integer.valueOf(batchCredit))
-				return ErrorResponse.DOLLAR_AMOUNT_ERROR;
+				errors.add(ErrorResponse.DOLLAR_AMOUNT_ERROR);
 			if (debit != Integer.valueOf(batchDebit))
-				return ErrorResponse.DOLLAR_AMOUNT_ERROR;
+				errors.add(ErrorResponse.DOLLAR_AMOUNT_ERROR);
 		}
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return errors;
 	}
 	
 	//Checks that debit and credit totals for the file are correct
@@ -221,20 +209,16 @@ public class ValidationTests {
 		int debit = 0;
 		int credit = 0;
 
-		if(validBatchTotals(file).equals(ErrorResponse.CLEAN_FILE_NO_ERROR)) {
-			for(int i = 0; i < batches; i++) {
-				debit += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getTotalDebitAmount());
-				credit += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getTotalCreditAmount());
-			}
+		for(int i = 0; i < batches; i++) {
+			debit += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getTotalDebitAmount());
+			credit += Integer.valueOf(file.getBatchDetail().get(i).getCompanyBatchControl().getTotalCreditAmount());
+		}
 			
 			if(credit != Integer.valueOf(totalCredit))
 				return ErrorResponse.DOLLAR_AMOUNT_ERROR;
 			if(debit != Integer.valueOf(totalDebit))
 				return ErrorResponse.DOLLAR_AMOUNT_ERROR;
-		} else {
-			return ErrorResponse.DOLLAR_AMOUNT_ERROR;
-		}
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return null;
 	}
 	
 	//Checks that the FileControl has the correct number of batches
@@ -244,7 +228,7 @@ public class ValidationTests {
 		
 		if(numBatches != fileNumBatches)
 			return ErrorResponse.BATCH_COUNT_ERROR;
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return null;
 	}
 	
 	//Checks that each batch header matches the control
@@ -258,7 +242,7 @@ public class ValidationTests {
 			if(headerNum.compareTo(controlNum) != 0)
 				return ErrorResponse.BATCH_NUMBER_ERROR;
 		}
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return null;
 	}
 	
 	//Checks the total entry count
@@ -272,25 +256,64 @@ public class ValidationTests {
 		
 		if(totalEntries != Integer.valueOf(numEntries))
 			return ErrorResponse.ENTRY_COUNT_ERROR;
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;	
+		return null;
+	}
+	
+	public ArrayList<ErrorResponse> validBatchEntryCount(ACHFile file){
+		int numBatches = file.getBatchDetail().size();
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
+		for(int i = 0; i < numBatches; i++) {
+			int totalEntries = file.getBatchDetail().get(i).getEntryDetailList().size();
+			String numEntries = file.getBatchDetail().get(i).getCompanyBatchControl().getEntryCount();
+			
+			if(totalEntries != Integer.valueOf(numEntries))
+				errors.add(ErrorResponse.ENTRY_COUNT_ERROR);
+		}
+		return errors;
 	}
 	
 	//Checks that the CompanyID is the same in the header and control per batch
-	public ErrorResponse validCompanyID(ACHFile file) {
+	public ArrayList<ErrorResponse> validCompanyID(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
-		
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
 		for(int i = 0; i < numBatches; i++) {
 			String headerID = file.getBatchDetail().get(i).getCompanyBatchHeader().getCompanyID();
 			String controlID = file.getBatchDetail().get(i).getCompanyBatchControl().getCompanyID();
 			
 			if(headerID.compareTo(controlID) != 0)
-				return ErrorResponse.COMPANY_ID_ERROR;
+				errors.add(ErrorResponse.COMPANY_ID_ERROR);
 		}
-		return ErrorResponse.CLEAN_FILE_NO_ERROR;
+		return errors;
 	}
 
-	//TODO fix ach.xml to accept the blocking lines at the bottom
-	//TODO then check that the proper amount of blocking is placed
-	//if(lines % 10 != 0 then add lines until true;
-	//check that FileControl.blockCount % 10 == 0
+	//Checks that the blockCount is correct and that the blocking lines are less than 10
+	public ErrorResponse validBlockingCount(ACHFile file) {
+		int blockingLines = file.getBlocking().size();
+		String blockCount = file.getFileControl().getBlockCount();
+		if(Integer.valueOf(blockCount) % 10 != 0)
+			return ErrorResponse.BLOCK_NUMBER_ERROR;
+		if(blockingLines > 9)
+			return ErrorResponse.BLOCK_NUMBER_ERROR;
+		return null;
+	}
+	
+	//Checks that the addendaBool and Addenda existance are in agreement
+	public ArrayList<ErrorResponse> validAddenda(ACHFile file) {
+		int numBatches = file.getBatchDetail().size();
+		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>(); 
+		for(int i = 0; i < numBatches; i++) {
+			int numEntries = file.getBatchDetail().get(i).getEntryDetailList().size();
+			for(int j = 0; j < numEntries; j++) {
+				boolean addendaExists = file.getBatchDetail().get(i).getEntryDetailList().get(j).getEntryDetailAddenda() != null;
+				boolean entryHasAddenda = Boolean.valueOf(file.getBatchDetail().get(i).getEntryDetailList().get(j).getEntryDetail().getAddendaBool());
+				if (addendaExists && entryHasAddenda)
+					break;
+				if(!addendaExists && !entryHasAddenda)
+					break;
+				errors.add(ErrorResponse.ADDENDA_ERROR);
+			}
+		}
+		return errors;
+	}
+	
 }//class
