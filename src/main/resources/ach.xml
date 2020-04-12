@@ -21,7 +21,7 @@
 	            <field name="immediateOriginName" length="23" minOccurs="1" maxOccurs="1"/>
 	            <field name="referenceCode" length="8" minOccurs="1" maxOccurs="1"/>
 	    	</record>
-	    	<group name="batchDetail" collection="list" class="com.groupg.achfilevalidator.models.BatchDetail" order="2" minOccurs="1" maxOccurs="1">
+	    	<group name="batchDetail" collection="list" class="com.groupg.achfilevalidator.models.BatchDetail" order="2" minOccurs="1" maxOccurs="unbounded">
 	    		<record name="companyBatchHeader" class="com.groupg.achfilevalidator.models.CompanyBatchHeader" order="1" minOccurs="1" maxOccurs="1">
 	    			<field name="recordCode" rid="true" literal="5" length="1" minOccurs="1" maxOccurs="1"/>
 	                <field name="serviceClassCode" length="3" minOccurs="1" maxOccurs="1"/>
