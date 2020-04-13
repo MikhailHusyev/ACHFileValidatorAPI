@@ -30,32 +30,32 @@ public class StandardACHValidator implements ACHValidator {
     @Override
     public ValidationResponse validateFile(InputStreamSource file) {
         ErrorResponse error = new ErrorResponse();
-        try {
-            ACHFile achFile = this.convertFile(file);
-            error = validator.validBlockingCount(achFile);
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        ACHFile achFile = this.convertFile(file);
+        error = validator.validBlockingCount(achFile);
+
         return null;
     }
 
     @Override
-    public ACHFile convertFile(InputStreamSource file) throws Exception {
-
-        StreamFactory factory = StreamFactory.newInstance();
-        Reader reader;
-
-        reader = new InputStreamReader(file.getInputStream());
-        factory.load("src/main/resources/testACH.xml");
-        BeanReader in = factory.createReader("ach", reader);
-            
+    public ACHFile convertFile(InputStreamSource file){
         ACHFile convertedFile = null;
+        try{
+            StreamFactory factory = StreamFactory.newInstance();
+            Reader reader;
+    
+            reader = new InputStreamReader(file.getInputStream());
+            factory.load("src/main/resources/testACH.xml");
+            BeanReader in = factory.createReader("ach", reader);
+            while((convertedFile = (ACHFile) in.read()) != null){
+                
+            }
+            in.close();
+        }catch(Exception ex){
 
-        while((convertedFile = (ACHFile) in.read()) != null){
-            
         }
-        in.close();
+
+
         return convertedFile;
 
     }
