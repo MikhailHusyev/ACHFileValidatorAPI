@@ -3,6 +3,7 @@ package com.groupg.achfilevalidator.services.validation;
 import java.io.Reader;
 
 import com.groupg.achfilevalidator.models.ACHFile;
+import com.groupg.achfilevalidator.models.ErrorResponse;
 import com.groupg.achfilevalidator.models.ValidationResponse;
 import com.groupg.achfilevalidator.services.validation.standardverification.VerificationService;
 
@@ -28,15 +29,15 @@ public class StandardACHValidator implements ACHValidator {
 
     @Override
     public ValidationResponse validateFile(InputStreamSource file) {
-        ValidationResponse error = new ValidationResponse();
+        ErrorResponse error = new ErrorResponse();
         try {
             ACHFile achFile = this.convertFile(file);
-            error = validator.serviceClassHelper(achFile);
+            error = validator.validBlockingCount(achFile);
 
         } catch (Exception e) {
             System.out.println(e);
         }
-        return error;
+        return null;
     }
 
     @Override
