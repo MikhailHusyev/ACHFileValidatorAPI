@@ -1,13 +1,17 @@
-package com.groupg.achfilevalidator.services.validation;
+package com.groupg.achfilevalidator.services.validation.standardverification;
 
 import java.util.ArrayList;
 
 import com.groupg.achfilevalidator.models.ACHFile;
 import com.groupg.achfilevalidator.models.ErrorResponse;
+import com.groupg.achfilevalidator.models.ValidationResponse;
 
-public class ValidationTests {
-	//Checks that file has correct hash based on batch hashes
-	public ErrorResponse validFileHash(ACHFile file) {
+import org.springframework.stereotype.Component;
+
+@Component("standardVerification")
+public class StandardVerification implements VerificationService{
+//Checks that file has correct hash based on batch hashes
+public ErrorResponse validFileHash(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
 		int calcHash = 0;
 		String realHash = "";
@@ -37,7 +41,7 @@ public class ValidationTests {
 			return ErrorResponse.HASH_CODE_ERROR;
 		return null;
 	}
-	
+
 	//Checks that the specified batch has the correct hash
 	public ArrayList<ErrorResponse> validBatchHash(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -75,7 +79,7 @@ public class ValidationTests {
 		}
 		return errors;
 	}
-	
+
 	//Checks the Service Class Code against Entry Transaction codes per batch
 	public ArrayList<ErrorResponse> validServiceClass(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -158,7 +162,7 @@ public class ValidationTests {
 		}
 		return errors;
 	}
-	
+
 	//Checks that debit and credit totals are correct per batch
 	public ArrayList<ErrorResponse> validBatchTotals(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -200,7 +204,7 @@ public class ValidationTests {
 		}
 		return errors;
 	}
-	
+
 	//Checks that debit and credit totals for the file are correct
 	public ErrorResponse validFileTotals(ACHFile file) {
 		int batches = file.getBatchDetail().size();
@@ -220,7 +224,7 @@ public class ValidationTests {
 				return ErrorResponse.DOLLAR_AMOUNT_ERROR;
 		return null;
 	}
-	
+
 	//Checks that the FileControl has the correct number of batches
 	public ErrorResponse validBatchCount(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -230,7 +234,7 @@ public class ValidationTests {
 			return ErrorResponse.BATCH_COUNT_ERROR;
 		return null;
 	}
-	
+
 	//Checks that each batch header matches the control
 	public ErrorResponse validBatchNum(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -244,7 +248,7 @@ public class ValidationTests {
 		}
 		return null;
 	}
-	
+
 	//Checks the total entry count
 	public ErrorResponse validEntryCount(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -258,7 +262,7 @@ public class ValidationTests {
 			return ErrorResponse.ENTRY_COUNT_ERROR;
 		return null;
 	}
-	
+
 	public ArrayList<ErrorResponse> validBatchEntryCount(ACHFile file){
 		int numBatches = file.getBatchDetail().size();
 		ArrayList<ErrorResponse> errors = new ArrayList<ErrorResponse>();
@@ -271,7 +275,7 @@ public class ValidationTests {
 		}
 		return errors;
 	}
-	
+
 	//Checks that the CompanyID is the same in the header and control per batch
 	public ArrayList<ErrorResponse> validCompanyID(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -296,7 +300,7 @@ public class ValidationTests {
 			return ErrorResponse.BLOCK_NUMBER_ERROR;
 		return null;
 	}
-	
+
 	//Checks that the addendaBool and Addenda existance are in agreement
 	public ArrayList<ErrorResponse> validAddenda(ACHFile file) {
 		int numBatches = file.getBatchDetail().size();
@@ -315,5 +319,5 @@ public class ValidationTests {
 		}
 		return errors;
 	}
-	
+		
 }//class

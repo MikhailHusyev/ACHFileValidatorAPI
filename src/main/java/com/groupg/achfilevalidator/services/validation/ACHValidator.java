@@ -1,17 +1,17 @@
 package com.groupg.achfilevalidator.services.validation;
 
 import com.groupg.achfilevalidator.models.ACHFile;
-import com.groupg.achfilevalidator.models.ErrorResponse;
+import com.groupg.achfilevalidator.models.ValidationResponse;
 
 import org.springframework.core.io.InputStreamSource;
 
 /**
  * Validation Service
  */
-public interface Validate{
+public interface ACHValidator {
 
     // Convert File To ACH Object
-    ErrorResponse convertFile(InputStreamSource file);
+    ACHFile convertFile(InputStreamSource file) throws Exception;
     // Validate the file according to specifications
-    ErrorResponse validateFile(ACHFile fileModel);
+    ValidationResponse validateFile(InputStreamSource file);
 }

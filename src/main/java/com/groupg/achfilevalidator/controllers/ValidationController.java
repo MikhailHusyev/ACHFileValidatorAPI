@@ -1,6 +1,6 @@
 package com.groupg.achfilevalidator.controllers;
 
-import com.groupg.achfilevalidator.models.ErrorResponse;
+import com.groupg.achfilevalidator.models.ValidationResponse;
 import com.groupg.achfilevalidator.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ValidationController{
 
     @Autowired
-    @Qualifier("test")
+    @Qualifier("validationService")
     private ValidationService validationService;
 
     @PostMapping
-    public ErrorResponse validateFile(@RequestParam("file") InputStreamSource file){
+    public ValidationResponse validateFile(@RequestParam("file") InputStreamSource file){
         return validationService.validate(file);
         
-        // Return APIResponses
+        //TODO API RESPONSE
     }
 }
