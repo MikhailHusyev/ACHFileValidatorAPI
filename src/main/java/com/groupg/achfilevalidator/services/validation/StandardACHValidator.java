@@ -39,24 +39,27 @@ public class StandardACHValidator implements ACHValidator {
 
     @Override
     public ACHFile convertFile(InputStreamSource file){
-        ACHFile convertedFile = null;
+        
         try{
+            ACHFile convertedFile;
             StreamFactory factory = StreamFactory.newInstance();
             Reader reader;
     
             reader = new InputStreamReader(file.getInputStream());
-            factory.load("src/main/resources/testACH.xml");
+            factory.load("src/main/resources/ach.xml");
             BeanReader in = factory.createReader("ach", reader);
+            
             while((convertedFile = (ACHFile) in.read()) != null){
-                
+                return convertedFile;
             }
             in.close();
+            
         }catch(Exception ex){
-
+            System.out.println(ex);
         }
 
 
-        return convertedFile;
+        return null;
 
     }
 }
