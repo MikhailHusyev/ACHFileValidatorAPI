@@ -2,6 +2,11 @@ package com.groupg.achfilevalidator.controllers;
 
 import com.groupg.achfilevalidator.models.ValidationResponse;
 import com.groupg.achfilevalidator.services.ValidationService;
+import com.groupg.achfilevalidator.services.ValidationServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.InputStreamSource;
@@ -16,10 +21,10 @@ public class ValidationController{
 
     @Autowired
     @Qualifier("validationService")
-    private ValidationService validationService;
+    private ValidationServiceImpl validationService;
 
     @PostMapping
-    public ValidationResponse validateFile(@RequestParam("file") InputStreamSource file){
+    public List<ValidationResponse> validateFile(@RequestParam("file") InputStreamSource file){
         return validationService.validate(file);
         
         //TODO API RESPONSE
