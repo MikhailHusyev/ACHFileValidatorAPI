@@ -4,32 +4,13 @@ import java.util.List;
 
 public class APIResponse {
 
-    private String value;
-    private String location;
-    private List<String> errors;
+    private List<ValidationResponse> errors;
 
-    public String getValue() {
-        return value;
-    }
-
-    public List<String> getErrors() {
+    public List<ValidationResponse> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<String> errors) {
+    public void setErrors(List<ValidationResponse> errors) {
         this.errors = errors;
     }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
 }

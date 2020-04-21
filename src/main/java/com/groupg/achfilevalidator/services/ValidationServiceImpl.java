@@ -1,11 +1,8 @@
 package com.groupg.achfilevalidator.services;
 
 import com.groupg.achfilevalidator.models.ValidationResponse;
-import com.groupg.achfilevalidator.services.validation.ACHValidator;
 import com.groupg.achfilevalidator.services.validation.StandardACHValidator;
-
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.InputStreamSource;
@@ -23,8 +20,7 @@ public class ValidationServiceImpl implements ValidationService{
 
     @Override
     public ArrayList<ValidationResponse> validate(InputStreamSource file) {
-        standardValidator.validateFile(file);
-        return null;
+        return standardValidator.validateFile(file);  
     }
 
 }

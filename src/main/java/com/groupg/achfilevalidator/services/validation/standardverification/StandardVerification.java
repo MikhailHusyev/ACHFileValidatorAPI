@@ -116,6 +116,7 @@ public ValidationResponse validFileHash(ACHFile file) {
 								errors.add(ValidationResponse.SERVICE_TRANSACTION_ERROR);
 						}
 					}
+					break;
 				}
 				case ("220"): {
 					for(int i = 0; i < entryCount; i++) {
@@ -134,6 +135,7 @@ public ValidationResponse validFileHash(ACHFile file) {
 								errors.add(ValidationResponse.SERVICE_TRANSACTION_ERROR);
 						}
 					}
+					break;
 				}
 				case ("225"): {
 					for(int i = 0; i < entryCount; i++) {
@@ -152,6 +154,7 @@ public ValidationResponse validFileHash(ACHFile file) {
 								errors.add(ValidationResponse.SERVICE_TRANSACTION_ERROR);
 						}
 					}
+					break;
 				}
 				default: {
 					errors.add(ValidationResponse.SERVICE_TRANSACTION_ERROR);
@@ -292,7 +295,10 @@ public ValidationResponse validFileHash(ACHFile file) {
 	public ValidationResponse validBlockingCount(ACHFile file) {
 		int blockingLines = file.getBlocking().size();
 		String blockCount = file.getFileControl().getBlockCount();
-		if(Integer.valueOf(blockCount) % 10 != 0)
+		int numOfLines = file.getNumOfLines();
+		if((numOfLines / 10) != Integer.valueOf(blockCount))
+			return ValidationResponse.BLOCK_NUMBER_ERROR;
+		if(numOfLines % 10 != 0)
 			return ValidationResponse.BLOCK_NUMBER_ERROR;
 		if(blockingLines > 9)
 			return ValidationResponse.BLOCK_NUMBER_ERROR;

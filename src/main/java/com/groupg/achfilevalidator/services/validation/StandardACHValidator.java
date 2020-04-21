@@ -22,18 +22,27 @@ public class StandardACHValidator implements ACHValidator {
     @Qualifier("standardVerification")
     VerificationService validator;
 
+    //TODO: extractInfo method to pull info from file into info Objects
+    //TODO: make info objects for APIResponse
+    
     @Override
     public ArrayList<ValidationResponse> validateFile(InputStreamSource file) {
         ArrayList<ValidationResponse> error = new ArrayList<ValidationResponse>();
 
         ACHFile achFile = this.convertFile(file);
-        System.out.println(achFile.getBatchDetail().get(0).getCompanyBatchHeader().getCompanyName());
-        System.out.println("Here");
         error.addAll(validator.validBatchTotals(achFile));
-        System.out.println("Here");
+        error.add(validator.validBatchCount(achFile));
+        error.add(validator.validBatchNum(achFile));
+        error.add(validator.validBlockingCount(achFile));
+        error.add(validator.validEntryCount(achFile));
+        error.add(validator.validFileHash(achFile));
         error.add(validator.validFileTotals(achFile));
-        for(int i = 0; i < error.size(); i++)
-        	System.out.println(error.get(i).toString());
+        error.addAll(validator.validAddenda(achFile));
+        error.addAll(validator.validBatchEntryCount(achFile));
+        error.addAll(validator.validBatchHash(achFile));
+        error.addAll(validator.validCompanyID(achFile));
+        error.addAll(validator.validServiceClass(achFile));
+        error.removeIf(n -> (n == null));
         return error;
     }
 
@@ -50,16 +59,13 @@ public class StandardACHValidator implements ACHValidator {
             BeanReader in = factory.createReader("ach", reader);
             
             while((convertedFile = (ACHFile) in.read()) != null){
-                return convertedFile;
+            	return convertedFile;
             }
             in.close();
             
         }catch(Exception ex){
             System.out.println(ex);
         }
-
-
         return null;
-
     }
 }
