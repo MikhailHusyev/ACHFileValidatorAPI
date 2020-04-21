@@ -1,14 +1,11 @@
 package com.groupg.achfilevalidator.services;
 
-import java.util.ArrayList;
-
 import org.springframework.core.io.InputStreamSource;
-
-import com.groupg.achfilevalidator.models.ValidationResponse;
+import com.groupg.achfilevalidator.models.APIResponse;
 
 public interface ValidationService {
 
     // Validate Service
-    public ArrayList<ValidationResponse> validate(InputStreamSource file);
+    public APIResponse validate(InputStreamSource file);
 
 }

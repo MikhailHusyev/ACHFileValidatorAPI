@@ -20,11 +20,6 @@ public class ValidationController{
 
     @PostMapping
     public APIResponse validateFile(@RequestParam("file") InputStreamSource file){
-        APIResponse response = new APIResponse();
-    	response.setErrors(validationService.validate(file));
-        
-    	return response;
-        
-        //TODO API RESPONSE
+    	return validationService.validate(file);
     }
 }
