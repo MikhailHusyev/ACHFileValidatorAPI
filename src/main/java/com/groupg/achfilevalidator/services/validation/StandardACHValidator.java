@@ -33,7 +33,7 @@ public class StandardACHValidator implements ACHValidator {
         ACHFile achFile = this.convertFile(file);
         error.addAll(validator.validBatchTotals(achFile));
         error.add(validator.validBatchCount(achFile));
-        error.add(validator.validBatchNum(achFile));
+        error.addAll(validator.validBatchNum(achFile));
         error.add(validator.validBlockingCount(achFile));
         error.add(validator.validEntryCount(achFile));
         error.add(validator.validFileHash(achFile));
@@ -43,6 +43,7 @@ public class StandardACHValidator implements ACHValidator {
         error.addAll(validator.validBatchHash(achFile));
         error.addAll(validator.validCompanyID(achFile));
         error.addAll(validator.validServiceClass(achFile));
+        error.addAll(validator.validEffectiveDate(achFile));
         error.removeIf(n -> (n == null));
         return error;
     }
