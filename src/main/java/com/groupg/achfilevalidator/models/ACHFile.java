@@ -12,6 +12,35 @@ public class ACHFile {
     private ArrayList<BatchDetail> batchDetail;
     @Segment(name="blocking")
     private ArrayList<Blocking> blocking;
+    private int numOfLines;
+    
+    public int getNumOfLines() {
+    	int numLines = 0;
+    	
+    	if(this.getFileHeader() != null)
+    		numLines++;
+    	if(this.getFileControl() != null)
+    		numLines++;
+    	numLines += this.getBlocking().size();
+    	for(int i = 0; i < this.getBatchDetail().size(); i++) {
+    		if(this.getBatchDetail().get(i).getCompanyBatchHeader() != null)
+    			numLines++;
+    		if(this.getBatchDetail().get(i).getCompanyBatchControl() != null)
+    			numLines++;
+    		for(int j = 0; j < this.getBatchDetail().get(i).getEntryDetailList().size(); j++) {
+    			if(this.getBatchDetail().get(i).getEntryDetailList().get(j).getEntryDetail() != null)
+    				numLines++;
+    			if(this.getBatchDetail().get(i).getEntryDetailList().get(j).getEntryDetailAddenda() != null)
+    				numLines++;
+    		}
+    	}
+    	
+    	return numLines;
+    }
+    
+    public void setNumOfLines(int numOfLines) {
+    	this.numOfLines = numOfLines;
+    }
     
     public ArrayList<Blocking> getBlocking(){
     	return blocking;

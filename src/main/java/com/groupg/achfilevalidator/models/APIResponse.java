@@ -4,32 +4,49 @@ import java.util.List;
 
 public class APIResponse {
 
-    private String value;
-    private String location;
-    private List<String> errors;
+	private FileHeaderInfo fileHeader;
+	private List<BatchHeaderInfo> batchHeaders;
+	private List<BatchControlInfo> batchControls;
+	private FileControlInfo fileControl;
+    private List<ValidationResponse> errors;
 
-    public String getValue() {
-        return value;
-    }
-
-    public List<String> getErrors() {
+    public List<ValidationResponse> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<String> errors) {
+    public void setErrors(List<ValidationResponse> errors) {
         this.errors = errors;
     }
 
-    public String getLocation() {
-        return location;
-    }
+	public FileHeaderInfo getFileHeader() {
+		return fileHeader;
+	}
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+	public void setFileHeader(FileHeaderInfo fileHeader) {
+		this.fileHeader = fileHeader;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public List<BatchHeaderInfo> getBatchHeaders() {
+		return batchHeaders;
+	}
 
+	public void setBatchHeaders(List<BatchHeaderInfo> batchHeaders) {
+		this.batchHeaders = batchHeaders;
+	}
+
+	public List<BatchControlInfo> getBatchControls() {
+		return batchControls;
+	}
+
+	public void setBatchControls(List<BatchControlInfo> batchControls) {
+		this.batchControls = batchControls;
+	}
+
+	public FileControlInfo getFileControl() {
+		return fileControl;
+	}
+
+	public void setFileControl(FileControlInfo fileControl) {
+		this.fileControl = fileControl;
+	}
 }

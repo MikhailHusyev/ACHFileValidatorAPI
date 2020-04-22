@@ -11,11 +11,11 @@ public interface VerificationService {
     ArrayList<ValidationResponse> validBatchTotals(ACHFile file);
     ValidationResponse validFileTotals(ACHFile file);
     ValidationResponse validBatchCount(ACHFile file);
-    ValidationResponse validBatchNum(ACHFile file);
+    ArrayList<ValidationResponse> validBatchNum(ACHFile file);
     ValidationResponse validEntryCount(ACHFile file);
     ArrayList<ValidationResponse> validBatchEntryCount(ACHFile file);
     ArrayList<ValidationResponse> validCompanyID(ACHFile file);
     ValidationResponse validBlockingCount(ACHFile file);
     ArrayList<ValidationResponse> validAddenda(ACHFile file);
-    
+    ArrayList<ValidationResponse> validEffectiveDate(ACHFile file);
 }   

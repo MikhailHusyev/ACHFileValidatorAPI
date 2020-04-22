@@ -1,8 +1,7 @@
 package com.groupg.achfilevalidator.services;
 
-import com.groupg.achfilevalidator.models.ValidationResponse;
-import com.groupg.achfilevalidator.services.validation.ACHValidator;
-
+import com.groupg.achfilevalidator.models.APIResponse;
+import com.groupg.achfilevalidator.services.validation.StandardACHValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.InputStreamSource;
@@ -16,12 +15,19 @@ public class ValidationServiceImpl implements ValidationService{
 
     @Autowired
     @Qualifier("standardValidation")
-    ACHValidator standardValidator;
+    StandardACHValidator standardValidator;
 
     @Override
-    public ValidationResponse validate(InputStreamSource file) {
-        standardValidator.validateFile(file);
-        return null;
+    public APIResponse validate(InputStreamSource file) {
+        APIResponse response = new APIResponse();
+    	
+        response.setErrors(standardValidator.validateFile(file));
+        response.setFileHeader(standardValidator.extractFileHeader(file));
+        response.setBatchHeaders(standardValidator.extractBatchHeader(file));
+        response.setBatchControls(standardValidator.extractBatchControl(file));
+        response.setFileControl(standardValidator.extractFileControl(file));
+        
+        return response;  
     }
 
 }
